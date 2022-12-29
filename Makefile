@@ -1,5 +1,19 @@
-#!/bin/bash
+CC=gcc
+CFLAGS= -Wall
+INC= -Iinc/
+SOURCE=./src/
+BIN=./bin/
 
-# Compile the client and server binaries.
-gcc -o echo_client echo_client.c echo_lib.h
-gcc -o echo_server echo_server.c echo_lib.h
+LIBNAMES=echo_lib.c rio_lib.c
+LIBS=$(addprefix $(SOURCE)/, $(LIBNAMES))
+
+PROG=echo_client echo_server
+LIST=$(addprefix $(BIN)/, $(PROG))
+
+all: $(LIST)
+
+$(BIN)/%:  $(SOURCE)%.c
+	$(CC) -o $@ $(INC) $< $(CFLAGS) $(LIBS)
+
+clean:
+	rm $(BIN)*
