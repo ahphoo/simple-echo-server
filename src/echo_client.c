@@ -1,4 +1,5 @@
 #include "echo_lib.h"
+#include "rio_lib.h"
 
 // Echo client main routine
 int main(int argc, char* argv[])
